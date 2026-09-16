@@ -221,14 +221,48 @@
               {name: "Tangier, Morocco",      lat: 35.7595,  lng: -5.8340,   start: "2026-04", end: "2026-04", type: "business"},
               {name: "Seattle, US",           lat: 47.6062,  lng: -122.3321, start: "2026-06", end: "2026-06", type: "personal"},
               {name: "Toronto, Canada",       lat: 43.6532,  lng: -79.3832,  start: "2026-06", end: "2026-06", type: "personal"},
-              {name: "Madrid, Spain",         lat: 40.4168,  lng: -3.7038,   start: "2026-05", end: "2026-05", type: "personal"}
+              {name: "Madrid, Spain",         lat: 40.4168,  lng: -3.7038,   start: "2026-05", end: "2026-05", type: "personal"},
+
+              {name: "Taiwan Taoyuan Intl (TPE)",         lat: 25.0797,  lng: 121.2342,  start: "", end: "", type: "airport"},
+              {name: "Hong Kong Intl (HKG)",              lat: 22.3080,  lng: 113.9185,  start: "", end: "", type: "airport"},
+              {name: "Suvarnabhumi (BKK)",                lat: 13.6900,  lng: 100.7501,  start: "", end: "", type: "airport"},
+              {name: "Kansai Intl (KIX)",                 lat: 34.4347,  lng: 135.2441,  start: "", end: "", type: "airport"},
+              {name: "Narita Intl (NRT)",                 lat: 35.7719,  lng: 140.3929,  start: "", end: "", type: "airport"},
+              {name: "Incheon Intl (ICN)",                lat: 37.4602,  lng: 126.4407,  start: "", end: "", type: "airport"},
+              {name: "Shanghai Hongqiao (SHA)",           lat: 31.1979,  lng: 121.3363,  start: "", end: "", type: "airport"},
+              {name: "Shanghai Pudong (PVG)",             lat: 31.1443,  lng: 121.8083,  start: "", end: "", type: "airport"},
+              {name: "Singapore Changi (SIN)",            lat: 1.3644,   lng: 103.9915,  start: "", end: "", type: "airport"},
+              {name: "Miami Intl (MIA)",                  lat: 25.7959,  lng: -80.2870,  start: "", end: "", type: "airport"},
+              {name: "Vancouver Intl (YVR)",               lat: 49.1967,  lng: -123.1815, start: "", end: "", type: "airport"},
+              {name: "Toronto Pearson (YYZ)",             lat: 43.6777,  lng: -79.6248,  start: "", end: "", type: "airport"},
+              {name: "Newark Liberty (EWR)",              lat: 40.6895,  lng: -74.1745,  start: "", end: "", type: "airport"},
+              {name: "Seattle-Tacoma (SEA)",              lat: 47.4502,  lng: -122.3088, start: "", end: "", type: "airport"},
+              {name: "Ottawa Macdonald-Cartier (YOW)",    lat: 45.3225,  lng: -75.6692,  start: "", end: "", type: "airport"},
+              {name: "Istanbul Airport (IST)",            lat: 41.2753,  lng: 28.7519,   start: "", end: "", type: "airport"},
+              {name: "Sabiha Gokcen (SAW)",                lat: 40.8986,  lng: 29.3092,   start: "", end: "", type: "airport"},
+              {name: "Paris Orly (ORY)",                  lat: 48.7233,  lng: 2.3794,    start: "", end: "", type: "airport"},
+              {name: "Hamad Intl, Doha (DOH)",            lat: 25.2731,  lng: 51.6081,   start: "", end: "", type: "airport"},
+              {name: "Abu Dhabi Intl (AUH)",              lat: 24.4330,  lng: 54.6511,   start: "", end: "", type: "airport"},
+              {name: "Dubai Intl (DXB)",                  lat: 25.2532,  lng: 55.3657,   start: "", end: "", type: "airport"},
+              {name: "Krakow John Paul II (KRK)",         lat: 50.0777,  lng: 19.7848,   start: "", end: "", type: "airport"},
+              {name: "Vaclav Havel Prague (PRG)",         lat: 50.1008,  lng: 14.2600,   start: "", end: "", type: "airport"},
+              {name: "London Heathrow (LHR)",             lat: 51.4700,  lng: -0.4543,   start: "", end: "", type: "airport"},
+              {name: "Madrid-Barajas (MAD)",              lat: 40.4983,  lng: -3.5676,   start: "", end: "", type: "airport"},
+              {name: "Tangier Ibn Battouta (TNG)",        lat: 35.7269,  lng: -5.9168,   start: "", end: "", type: "airport"},
+              {name: "Casablanca Mohammed V (CMN)",       lat: 33.3675,  lng: -7.5900,   start: "", end: "", type: "airport"},
+              {name: "Athens Intl (ATH)",                 lat: 37.9364,  lng: 23.9445,   start: "", end: "", type: "airport"},
+              {name: "Cochin Intl (COK)",                 lat: 10.1520,  lng: 76.4019,   start: "", end: "", type: "airport"},
+              {name: "Brisbane Airport (BNE)",            lat: -27.3842, lng: 153.1175,  start: "", end: "", type: "airport"},
+              {name: "Kempegowda Intl, Bengaluru (BLR)",  lat: 13.1986,  lng: 77.7066,   start: "", end: "", type: "airport"},
+              {name: "Taipei Songshan (TSA)",              lat: 25.0697,  lng: 121.5522,  start: "", end: "", type: "airport"}
               // {name: "[City, Country]", lat: 0, lng: 0, start: "[YYYY-MM]", end: "[YYYY-MM or Present]", type: "business"},
             ];
 
             var CATEGORY_STYLE = {
               // lived:    {color: "#1772d0", label: "Base"},
-              business: {color: "#f09228", label: "Business Trip"},
-              personal: {color: "#4caf50", label: "Travel"}
+              business: {color: "#f09228", label: "Business"},
+              personal: {color: "#4caf50", label: "Tourist"},
+              airport:  {color: "#2196f3", label: "Airport"}
             };
 
             var travelMap = L.map('travel-map', {scrollWheelZoom: false}).setView([20, 30], 2);
@@ -238,27 +272,50 @@
               attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
             }).addTo(travelMap);
 
+            // One Leaflet layer group per category, so each can be shown/hidden independently.
+            var categoryGroups = {};
+            Object.keys(CATEGORY_STYLE).forEach(function (key) {
+              categoryGroups[key] = L.layerGroup().addTo(travelMap);
+            });
+
             visited.forEach(function (place) {
               var style = CATEGORY_STYLE[place.type] || {color: "#999999"};
-              L.circleMarker([place.lat, place.lng], {
+              var marker = L.circleMarker([place.lat, place.lng], {
                 radius: 5,
                 weight: 2,
                 color: "#ffffff",
                 fillColor: style.color,
                 fillOpacity: 0.9
-              })
-                .addTo(travelMap)
-                .bindTooltip(place.name + '<br>' + (place.start === place.end ? place.start : place.start + ' &ndash; ' + place.end));
+              }).bindTooltip(place.name + (place.start ? '<br>' + (place.start === place.end ? place.start : place.start + ' &ndash; ' + place.end) : ''));
+
+              if (!categoryGroups[place.type]) {
+                categoryGroups[place.type] = L.layerGroup().addTo(travelMap);
+              }
+              categoryGroups[place.type].addLayer(marker);
             });
 
+            // Legend doubles as a show/hide toggle per category.
             var legendHtml = Object.keys(CATEGORY_STYLE).map(function (key) {
               var style = CATEGORY_STYLE[key];
-              return '<span style="display:inline-block;margin-right:16px;">' +
-                '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:' + style.color + ';margin-right:5px;"></span>' +
+              return '<label style="display:inline-block;margin-right:16px;cursor:pointer;">' +
+                '<input type="checkbox" checked data-category="' + key + '" class="travel-toggle" style="vertical-align:middle;margin-right:4px;">' +
+                '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:' + style.color + ';margin-right:5px;vertical-align:middle;"></span>' +
                 style.label +
-                '</span>';
+                '</label>';
             }).join('');
             document.getElementById('travel-legend').innerHTML = legendHtml;
+
+            document.querySelectorAll('.travel-toggle').forEach(function (checkbox) {
+              checkbox.addEventListener('change', function () {
+                var group = categoryGroups[checkbox.dataset.category];
+                if (!group) return;
+                if (checkbox.checked) {
+                  travelMap.addLayer(group);
+                } else {
+                  travelMap.removeLayer(group);
+                }
+              });
+            });
           </script>
         </td>
       </tr>
