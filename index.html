@@ -35,7 +35,7 @@
                 </p>
               </td>
               <td style="padding:2.5%;width:37%;max-width:37%">
-                <img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="selfie.png" class="hoverZoomLink">
+                <img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="img/selfie.png" class="hoverZoomLink">
               </td>
             </tr>
           </tbody></table>
@@ -43,7 +43,7 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr>
               <td style="padding:16px;width:100%;vertical-align:middle">
-                <h2>Research (To be added)</h2>
+                <h2>Research</h2>
               </td>
             </tr>
           </tbody></table>
@@ -88,22 +88,150 @@
   </td>
 </tr> -->
 
-    <td style="padding:16px;width:80%;vertical-align:middle">
+  <tr>
+    <td style="padding:8px 0px 8px 16px;width:28%;vertical-align:middle">
+      <div style="background:#fcfcfb;border:1px solid rgba(11,11,11,0.10);border-radius:10px;padding:6px;">
+        <img src="img/sparsekmeans.png" alt="Illustration of k-means clustering: points grouped into three clusters by feature 1 and feature 2." style="height:96px;width:auto;max-width:100%;display:block;margin:0 auto;border-radius:4px;">
+      </div>
+    </td>
+    <td style="padding:8px 16px 8px 8px;width:72%;vertical-align:middle">
     <a href="https://www.csie.ntu.edu.tw/~cjlin/papers/sparse_kmeans/sparsekmeans-cikm.pdf">
       <span class="papertitle">SparseKmeans: High-Performance Clustering on Sparse Data</span>
     </a>
     <br>
-    Khoi Nguyen Pham Dang*, <b>He-Zhe Lin*</b>, and Chih-Jen Lin 
+    Khoi Nguyen Pham Dang*, <b>He-Zhe Lin*</b>, and Chih-Jen Lin
     <br>
     <em>CIKM</em>, 2025
     <br>
     <a href="https://github.com/cjlin1/sparsekmeans">project page</a>
-    <p></p>
-    <p>
+    <p style="margin-top:8px;margin-bottom:0;">
     Developed a high-performance K-means implementation using GraphBLAS for sparse matrix operations, achieving up to 10x speedup over scikit-learn on sparse data.
     </p>
-
   </td>
+  </tr>
+
+  <tr>
+    <td style="padding:8px 0px 8px 16px;width:28%;vertical-align:middle">
+      <div id="fig-dual-space">
+        <style>
+          #fig-dual-space {
+            display: block;
+            color-scheme: light;
+            --surface:      #fcfcfb;
+            --surface-plot: #ffffff;
+            --ink:          #0b0b0b;
+            --grid:         #e1e0d9;
+            --newton:       #2a78d6;
+            --cd:           #eb6834;
+            --ring:         rgba(11,11,11,0.10);
+          }
+          #fig-dual-space .card {
+            background: var(--surface);
+            border: 1px solid var(--ring);
+            border-radius: 10px;
+            padding: 6px;
+          }
+          #fig-dual-space svg.plot { height: 96px; width: auto; max-width: 100%; display: block; margin: 0 auto; }
+          #fig-dual-space .plot-bg { fill: var(--surface-plot); }
+          #fig-dual-space .contour { fill: none; stroke: var(--grid); stroke-width: 1.5; }
+          #fig-dual-space .zero-line { stroke: var(--grid); stroke-width: 2.5; stroke-dasharray: 2 5; }
+          #fig-dual-space .trail-newton { fill: none; stroke: var(--newton); stroke-width: 5.5; stroke-linecap: round; }
+          #fig-dual-space .trail-cd { fill: none; stroke: var(--cd); stroke-width: 5.5; stroke-linecap: round; }
+          #fig-dual-space .dot-newton { fill: var(--newton); stroke: var(--surface-plot); stroke-width: 2.5; }
+          #fig-dual-space .dot-cd { fill: var(--cd); stroke: var(--surface-plot); stroke-width: 2.5; }
+          #fig-dual-space .pulse-ring {
+            fill: none; stroke: var(--cd); stroke-width: 3; opacity: 0;
+            transform-origin: center; transform-box: fill-box;
+          }
+          #fig-dual-space .pulse-ring.go { animation: fig-dual-space-pulse 700ms ease-out 1; }
+          @keyframes fig-dual-space-pulse {
+            0%   { opacity: 0.9; transform: scale(0.3); }
+            100% { opacity: 0;   transform: scale(2.8); }
+          }
+          #fig-dual-space .star { fill: var(--ink); }
+          @media (prefers-reduced-motion: reduce) {
+            #fig-dual-space .pulse-ring.go { animation: none; }
+          }
+        </style>
+        <div class="card">
+          <svg class="plot" viewBox="20 20 500 234" role="img" aria-label="Animated plot comparing a Newton-type optimizer, which approaches w1=0 asymptotically without ever reaching it, against a coordinate-descent dual optimizer, whose trajectory lands exactly on w1=0.">
+            <rect class="plot-bg" x="20" y="20" width="500" height="234" rx="12"></rect>
+            <clipPath id="fds-plotClip">
+              <rect x="20" y="20" width="500" height="234" rx="12"></rect>
+            </clipPath>
+            <g clip-path="url(#fds-plotClip)">
+              <ellipse class="contour" cx="48" cy="68" rx="55" ry="26"></ellipse>
+              <ellipse class="contour" cx="48" cy="68" rx="115" ry="55"></ellipse>
+              <ellipse class="contour" cx="48" cy="68" rx="180" ry="86"></ellipse>
+              <ellipse class="contour" cx="48" cy="68" rx="250" ry="120"></ellipse>
+            </g>
+            <line class="zero-line" x1="48" y1="20" x2="48" y2="254"></line>
+            <path id="fds-trailNewton" class="trail-newton" d=""></path>
+            <path id="fds-trailCd" class="trail-cd" d=""></path>
+            <path class="star" d="M48,56.3 L51.9,64.1 L61,65.4 L54.5,71.9 L55.8,81 L48,76.45 L40.2,81 L41.5,71.9 L35,65.4 L44.1,64.1 Z"></path>
+            <circle id="fds-pulseRing" class="pulse-ring" cx="48" cy="80" r="8.5"></circle>
+            <circle id="fds-dotNewton" class="dot-newton" r="8.5" cx="496" cy="239"></circle>
+            <circle id="fds-dotCd" class="dot-cd" r="8.5" cx="496" cy="239"></circle>
+          </svg>
+        </div>
+      </div>
+      <script src="fig-dual-space.js"></script>
+    </td>
+    <td style="padding:8px 16px 8px 8px;width:72%;vertical-align:middle">
+    <a href="https://www.csie.ntu.edu.tw/~cjlin/papers/dual-space/dual-space.pdf">
+      <span class="papertitle">On the Weight Density of L2-Regularized Linear Classification and Regression</span>
+    </a>
+    <br>
+    <b>He-Zhe Lin</b>, Zhi-Bao Lu, Sheng-Wei Chen, Cheng-Hung Liu, and Chih-Jen Lin
+    <br>
+    <em>AISTATS</em>, 2026
+    <!-- <p style="margin-top:8px;margin-bottom:0;">
+    Studied why L2-regularized linear classifiers and regressors tend to learn dense weight vectors, and what that implies for model compression.
+    </p> -->
+  </td>
+  </tr>
+
+  <tr>
+    <td style="padding:8px 0px 8px 16px;width:28%;vertical-align:middle">
+      <div style="background:#fcfcfb;border:1px solid rgba(11,11,11,0.10);border-radius:10px;padding:6px;">
+        <img src="img/emnlp-concept.png" alt="Slide illustrating inherent pruning in a tree-based linear model: features with no values in a data subset can be dropped from that node's weight vector." style="height:96px;width:auto;max-width:100%;display:block;margin:0 auto;border-radius:4px;">
+      </div>
+    </td>
+    <td style="padding:8px 16px 8px 8px;width:72%;vertical-align:middle">
+    <a href="https://www.csie.ntu.edu.tw/~cjlin/papers/multilabel_tree_model_size/multilabel_tree_model_size.pdf">
+      <span class="papertitle">Exploring Space Efficiency in a Tree-Based Linear Model for Extreme Multi-Label Classification</span>
+    </a>
+    <br>
+    <b>He-Zhe Lin</b>, Cheng-Hung Liu, and Chih-Jen Lin
+    <br>
+    <em>EMNLP</em>, 2024
+    <!-- <p style="margin-top:8px;margin-bottom:0;">
+    Reduced the model size of tree-based linear classifiers for extreme multi-label classification without sacrificing prediction accuracy.
+    </p> -->
+  </td>
+  </tr>
+
+  <tr>
+    <td style="padding:8px 0px 8px 16px;width:28%;vertical-align:middle">
+      <div style="background:#fcfcfb;border:1px solid rgba(11,11,11,0.10);border-radius:10px;padding:6px;">
+        <img src="img/autodiff-concept.png" alt="Computational graph for automatic differentiation: x1, x2 feed into v1..v5 to compute f(x1,x2)." style="height:96px;width:auto;max-width:100%;display:block;margin:0 auto;border-radius:4px;">
+      </div>
+    </td>
+    <td style="padding:8px 16px 8px 8px;width:72%;vertical-align:middle">
+    <a href="https://www.csie.ntu.edu.tw/~cjlin/papers/autodiff/autodiff.pdf">
+      <span class="papertitle">A Step-by-Step Introduction to the Implementation of Automatic Differentiation</span>
+    </a>
+    <br>
+    Yu-Hsueh Fang*, <b>He-Zhe Lin*</b>, Jie-Jyun Liu, and Chih-Jen Lin
+    <br>
+    <em>Technical report</em>, 2024
+    <br>
+    <a href="https://www.csie.ntu.edu.tw/~cjlin/papers/autodiff/">slides and code</a>
+    <p style="margin-top:8px;margin-bottom:0;">
+    A teaching-oriented walkthrough that implements a simple automatic differentiation system from scratch, bridging the gap between the math and a working implementation.
+    </p>
+  </td>
+  </tr>
 
           
 					<!-- <table style="width:100%; margin:0 auto; border:0; border-spacing:0; padding:16px;"><tbody>
@@ -273,9 +401,10 @@
             }).addTo(travelMap);
 
             // One Leaflet layer group per category, so each can be shown/hidden independently.
+            var DEFAULT_HIDDEN = {airport: true};
             var categoryGroups = {};
             Object.keys(CATEGORY_STYLE).forEach(function (key) {
-              categoryGroups[key] = L.layerGroup().addTo(travelMap);
+              categoryGroups[key] = DEFAULT_HIDDEN[key] ? L.layerGroup() : L.layerGroup().addTo(travelMap);
             });
 
             visited.forEach(function (place) {
@@ -298,7 +427,7 @@
             var legendHtml = Object.keys(CATEGORY_STYLE).map(function (key) {
               var style = CATEGORY_STYLE[key];
               return '<label style="display:inline-block;margin-right:16px;cursor:pointer;">' +
-                '<input type="checkbox" checked data-category="' + key + '" class="travel-toggle" style="vertical-align:middle;margin-right:4px;">' +
+                '<input type="checkbox"' + (DEFAULT_HIDDEN[key] ? '' : ' checked') + ' data-category="' + key + '" class="travel-toggle" style="vertical-align:middle;margin-right:4px;">' +
                 '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:' + style.color + ';margin-right:5px;vertical-align:middle;"></span>' +
                 style.label +
                 '</label>';
